@@ -1,0 +1,29 @@
+[33mcommit 639828abdbb2e06342cd3a30ef193c120eccac5c[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mdata[m[33m)[m
+Author: chiahuilin0531 <chiahuilin0531@gmail.com>
+Date:   Mon Jun 12 00:20:49 2023 +0800
+
+    Submit strategy_result20230523_jb
+    
+    提交strategy_result20230523_jb這個資料夾，包含Sample1.csv, Sample2.csv, Sample3.csv，20多萬種參組合數在三個樣本中的績效表現，還有common_params.csv用cross-intersection找出最適用於三個樣本前100名的參數組合。
+
+[33mcommit 49756bfb79c35898c87045de9db856cacd66d6de[m
+Author: emmanuelwithme <wow90327@gmail.com>
+Date:   Mon Jun 12 00:09:26 2023 +0800
+
+    Title: First Submit only-intersect.py, opt-numpy_jb.py
+    
+    Description: 第一次提交only-intersect.py, opt-numpy_jb.py這兩個檔案!
+
+[33mcommit ed81100a5256137c1b0c391a0254446a03856935[m
+Author: emmanuelwithme <56228514+emmanuelwithme@users.noreply.github.com>
+Date:   Sun Jun 11 21:02:33 2023 +0800
+
+    Update README.md包含grid-search和cross-intersection
+    
+    終於全部完成，包含grid-search和cross-intersection，還有列出該參數在三個樣本的詳細績效數據
+
+[33mcommit 77aa59bce271fb34c86792a8aa8c2f61506b518b[m
+Author: emmanuelwithme <56228514+emmanuelwithme@users.noreply.github.com>
+Date:   Sun Jun 11 18:27:38 2023 +0800
+
+    Initial commit

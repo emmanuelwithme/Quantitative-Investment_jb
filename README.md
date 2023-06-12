@@ -94,14 +94,14 @@ df1 = df1.rename(columns={'日期': 'Date', '開盤價': 'Open', '最高價': 'H
 df2 = df2.rename(columns={'日期': 'Date', '開盤價': 'Open', '最高價': 'High', '最低價': 'Low', '收盤價': 'Close', '成交量': 'Volume'})
 df3 = df3.rename(columns={'日期': 'Date', '開盤價': 'Open', '最高價': 'High', '最低價': 'Low', '收盤價': 'Close', '成交量': 'Volume'})
 ```
-4. **定義獲取買並持有策略回報的函數 `getBandHReturn()`**
+4. **定義獲取買並持有策略回報的函數** `getBandHReturn()`
 ```python
 def getBandHReturn(df):
     first_open = df.iloc[0]['Open']
     last_close = df.iloc[-1]['Close']
     return last_close - first_open
 ```
-5. **定義參數網格 `param_grid`**: 我定義了一個參數空間 `param_grid`，其中包括了所有可能的參數組合。每個參數都有一個範圍或列表，例如，`M_RSI_days` 的範圍是從10到120，步長為10。
+5. **定義參數網格** `param_grid`: 我定義了一個參數空間 `param_grid`，其中包括了所有可能的參數組合。每個參數都有一個範圍或列表，例如，`M_RSI_days` 的範圍是從10到120，步長為10。
 ```python
 param_grid = {
     'M_RSI_days': list(range(10, 130, 5)),  # RSI計算的天數範圍，從10到130，步長為5
@@ -112,7 +112,7 @@ param_grid = {
     'stop_loss_rate': [0.1, 0.15, 0.2, 0.25]  # 停損比例範圍，包括0.1、0.15、0.2和0.25
 }
 ```
-6. **創建參數網格 `grid`**: 使用 `scikit-learn`中的 `ParameterGrid` 模組從參數空間創建一個參數網格，其中包含所有可能的參數組合。
+6. **創建參數網格** `grid`: 使用 `scikit-learn`中的 `ParameterGrid` 模組從參數空間創建一個參數網格，其中包含所有可能的參數組合。
 ```python
 grid = ParameterGrid(param_grid)
 ```
@@ -122,7 +122,7 @@ results1 = Parallel(n_jobs=-1)(delayed(getStrategyReturn)(df1, params['M_RSI_day
 results2 = Parallel(n_jobs=-1)(delayed(getStrategyReturn)(df2, params['M_RSI_days'], params['a'], params['N'], params['M_RSI_days'], params['rsi_lower'], params['rsi_upper'], params['stop_loss_rate']) for params in tqdm(grid))
 results3 = Parallel(n_jobs=-1)(delayed(getStrategyReturn)(df3, params['M_RSI_days'], params['a'], params['N'], params['M_RSI_days'], params['rsi_lower'], params['rsi_upper'], params['stop_loss_rate']) for params in tqdm(grid))
 ```
-8. **將計算結果整理成 `DataFrame`**
+8. **將計算結果整理成 `DataFrame`**:
 ```python
 results1_df = pd.DataFrame(grid)
 results1_df['StrategyReturn'] = results1
@@ -173,23 +173,23 @@ print('樣本三報酬最高前10:\n', top_10_df3)
 請先執行完計算績效程式: `opt-numpy_jb.py`再執行此程式。
 此程式為交叉交集: `only-intersect.py`。
 利用Cross-Intersection找出符合三個樣本通用的參數組合。
-1. **讀取績效結果 CSV 檔案：**
+1. **讀取績效結果 CSV 檔案:**
 ```python
 results1_df = pd.read_csv('strategy_result20230523_jb/Sample1.csv')
 results2_df = pd.read_csv('strategy_result20230523_jb/Sample2.csv')
 results3_df = pd.read_csv('strategy_result20230523_jb/Sample3.csv')
 ```
-2. **獲取每個Sample `DataFrame` 的行數：**計算每個樣本的結果數據框中的行數，以便確定後續交集計算的範圍
+2. **獲取每個Sample `DataFrame` 的行數：** 計算每個樣本的結果數據框中的行數，以便確定後續交集計算的範圍
 ```python
 num_rows1 = results1_df.shape[0]
 num_rows2 = results2_df.shape[0]
 num_rows3 = results3_df.shape[0]
 ```
-3. **計算行數的最小值：**找到三個樣本結果`DataFrame`中行數的最小值，以確保後續運算不會超出該樣本的行數。
+3. **計算行數的最小值：** 找到三個樣本結果`DataFrame`中行數的最小值，以確保後續運算不會超出該樣本的行數。
 ```python
 min_rows = min(num_rows1, num_rows2, num_rows3)
 ```
-4. **初始化參數和 intersection_params DataFrame：**用於存儲交集結果。
+4. **初始化參數和 intersection_params DataFrame：** 用於存儲交集結果。
 ```python
 # num_params為已經找到交集的參數組合的數量
 num_params = 0
@@ -200,7 +200,7 @@ max_params = 100
 # 使用行數的最小值作為 num_top_params 的最大值
 max_top_params = min_rows
 ```
-5. **使用迴圈選取參數組合並進行交集計算: **
+5. **使用迴圈選取參數組合並進行交集計算:**
 ```python
 # num_params >= max_params已找到足夠的參數組
 # num_top_params > max_top_params已經找到最後一筆資料
